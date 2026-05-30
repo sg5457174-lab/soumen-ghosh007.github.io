@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Soumen Ghosh — Junior Electrical Engineer | Testing Specialist | SCADA | PLC | AutoCAD | Kolkata"/>
+<title>Soumen Ghosh ⚡ Electrical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ===== RESET & ROOT ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#08090b;--ink2:#0d0f14;--ink3:#131720;
+  --gold:#f5c542;--gold2:#d4a420;--goldf:#fff0b3;
+  --elec:#00d4ff;--elec2:#00a8cc;--elecf:#b3f0ff;
+  --volt:#39ff14;--voltf:#b3ffcc;
+  --rose:#ff4d6d;
+  --white:#f0f2f8;--muted:#5a6275;--dim:#3a4055;
+  --card:#0f1219;--card2:#141a24;
+  --border:rgba(255,255,255,0.06);
+  --font-display:'Syne',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--ink);color:var(--white);font-family:var(--font-display);overflow-x:hidden;cursor:none}
+
+/* ===== CUSTOM CURSOR ===== */
+#cursor{position:fixed;width:12px;height:12px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,background .2s;mix-blend-mode:difference}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease,width .2s,height .2s,opacity .2s;opacity:.5}
+body:has(a:hover) #cursor{transform:translate(-50%,-50%) scale(2.5);background:var(--elec)}
+body:has(a:hover) #cursor-ring{width:50px;height:50px;opacity:.3}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ===== CANVAS BACKGROUND ===== */
+#bg-canvas{position:fixed;inset:0;z-index:0;opacity:.35;pointer-events:none}
+
+/* ===== LAYOUT ===== */
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 40px}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 0;mix-blend-mode:normal;transition:background .3s}
+nav.scrolled{background:rgba(8,9,11,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 0}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:14px;font-weight:700;color:var(--gold);font-family:var(--font-mono);letter-spacing:1px}
+.nav-logo span{color:var(--elec)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:1.5px;text-decoration:none;transition:color .2s;text-transform:uppercase}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-family:var(--font-mono);font-size:11px;color:var(--ink);background:var(--gold);padding:8px 18px;border-radius:4px;text-decoration:none;letter-spacing:1px;transition:all .2s}
+.nav-cta:hover{background:var(--elec);transform:translateY(-1px)}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 80px;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+.hero-tag{font-family:var(--font-mono);font-size:12px;color:var(--elec);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';display:block;width:40px;height:1px;background:var(--elec)}
+.hero-h1{font-size:clamp(48px,6vw,80px);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:24px}
+.hero-h1 .line1{display:block;color:var(--white)}
+.hero-h1 .line2{display:block;color:var(--gold);position:relative}
+.hero-h1 .line2::after{content:'';position:absolute;bottom:-4px;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--gold),transparent)}
+.hero-h1 .line3{display:block;color:var(--elec);font-size:.55em;font-weight:400;font-family:var(--font-mono);letter-spacing:0;margin-top:12px;white-space:nowrap;overflow:hidden;border-right:2px solid var(--elec);width:0;animation:typewriter 2.5s steps(40) 1s forwards,blink-cursor .75s step-end infinite 1s}
+@keyframes typewriter{to{width:100%}}
+@keyframes blink-cursor{0%,100%{border-color:var(--elec)}50%{border-color:transparent}}
+.hero-desc{font-size:16px;line-height:1.8;color:var(--muted);max-width:480px;margin-bottom:36px;font-family:var(--font-mono);font-weight:300}
+.hero-desc strong{color:var(--white);font-weight:400}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-glow{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);padding:14px 28px;border-radius:6px;font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:1px;text-decoration:none;transition:all .3s;position:relative;overflow:hidden}
+.btn-glow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .4s}
+.btn-glow:hover::before{transform:translateX(100%)}
+.btn-glow:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(245,197,66,.3)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--muted);padding:14px 28px;border-radius:6px;font-family:var(--font-mono);font-size:12px;letter-spacing:1px;text-decoration:none;transition:all .3s}
+.btn-ghost:hover{border-color:var(--elec);color:var(--elec);transform:translateY(-3px)}
+.hero-socials{display:flex;gap:16px;margin-top:32px;align-items:center}
+.hero-socials span{font-family:var(--font-mono);font-size:11px;color:var(--dim);letter-spacing:1px}
+.social-link{width:36px;height:36px;border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:14px;transition:all .2s}
+.social-link:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ===== HERO CARD ===== */
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,rgba(0,212,255,.06),transparent 60%);pointer-events:none}
+.card-top{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.card-avatar{width:60px;height:60px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,#1a2a4a,#0d1f38);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--gold);font-family:var(--font-mono);position:relative;flex-shrink:0}
+.avatar-glow{position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--gold);opacity:.3;animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card-meta h3{font-size:16px;font-weight:700;color:var(--white)}
+.card-meta p{font-family:var(--font-mono);font-size:11px;color:var(--elec);margin-top:2px}
+.open-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(57,255,20,.08);border:1px solid rgba(57,255,20,.25);border-radius:20px;padding:5px 12px;font-family:var(--font-mono);font-size:11px;color:var(--volt);margin-bottom:20px}
+.open-dot{width:6px;height:6px;border-radius:50%;background:var(--volt);animation:pulse-dot 1.5s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.c-stat{background:var(--card2);padding:14px;text-align:center}
+.c-stat-n{font-family:var(--font-mono);font-size:22px;color:var(--gold);font-weight:600}
+.c-stat-l{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.card-info{display:flex;flex-direction:column;gap:8px}
+.info-row{display:flex;align-items:center;gap:10px;font-size:12px;font-family:var(--font-mono)}
+.info-icon{width:28px;height:28px;border-radius:6px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.info-label{color:var(--muted)}
+.info-val{color:var(--white);margin-left:auto;text-align:right}
+.info-val a{color:var(--elec);text-decoration:none}
+
+/* ===== SECTION BASE ===== */
+section{padding:100px 0;position:relative}
+.s-tag{font-family:var(--font-mono);font-size:11px;color:var(--elec);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.s-tag::before{content:'';display:block;width:24px;height:1px;background:var(--elec)}
+.s-title{font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:56px;line-height:1.1}
+.s-title span{color:var(--gold)}
+
+/* ===== DIVIDER ===== */
+.divider{width:100%;height:1px;background:var(--border);margin:0}
+
+/* ===== EXPERIENCE ===== */
+.exp-layout{display:grid;grid-template-columns:200px 1fr;gap:0}
+.exp-timeline{position:relative;padding-right:40px}
+.exp-timeline::after{content:'';position:absolute;right:0;top:8px;bottom:0;width:1px;background:linear-gradient(180deg,var(--gold),var(--elec),transparent)}
+.exp-company-btn{display:block;padding:16px 0;cursor:pointer;border:none;background:none;text-align:left;width:100%;transition:all .2s}
+.exp-company-btn.active .btn-name{color:var(--gold)}
+.exp-company-btn.active .btn-dot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.exp-company-btn.active::after{content:'';position:absolute;right:-1px;width:3px;height:100%;background:var(--gold);border-radius:1px}
+.exp-company-btn{position:relative}
+.btn-dot{width:8px;height:8px;border-radius:50%;background:var(--dim);margin-bottom:6px;transition:all .2s}
+.btn-name{font-size:12px;font-family:var(--font-mono);color:var(--muted);transition:color .2s;line-height:1.4}
+.exp-panel{display:none;animation:fadein .3s ease}
+.exp-panel.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.exp-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.exp-role{font-size:24px;font-weight:700;color:var(--white)}
+.exp-role span{color:var(--gold)}
+.exp-date-badge{font-family:var(--font-mono);font-size:11px;padding:6px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;color:var(--elec);white-space:nowrap}
+.exp-loc{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-bottom:24px}
+.exp-bullets{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.bullet{display:flex;gap:12px;font-size:14px;color:rgba(240,242,248,.75);line-height:1.7}
+.bullet::before{content:'⚡';font-size:11px;flex-shrink:0;margin-top:4px}
+.exp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--font-mono);font-size:10px;padding:5px 12px;border-radius:4px;letter-spacing:.5px}
+.chip-gold{background:rgba(245,197,66,.08);border:1px solid rgba(245,197,66,.25);color:var(--gold)}
+.chip-elec{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--elec)}
+
+/* ===== SKILLS ===== */
+.skills-outer{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.skill-group h3{font-family:var(--font-mono);font-size:11px;color:var(--elec);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.skill-bar-wrap{margin-bottom:20px}
+.skill-bar-head{display:flex;justify-content:space-between;margin-bottom:8px}
+.skill-bar-name{font-size:13px;font-weight:500;color:var(--white)}
+.skill-bar-pct{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.skill-track{height:4px;background:var(--card2);border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.25,.46,.45,.94);position:relative}
+.skill-fill::after{content:'';position:absolute;right:0;top:-2px;width:8px;height:8px;border-radius:50%;background:inherit;box-shadow:0 0 8px currentColor}
+.skill-fill.gold{background:linear-gradient(90deg,var(--gold2),var(--gold))}
+.skill-fill.elec{background:linear-gradient(90deg,var(--elec2),var(--elec))}
+.skill-fill.volt{background:linear-gradient(90deg,#1fa800,var(--volt))}
+.skill-tag-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.s-chip{padding:8px 16px;border-radius:6px;font-size:12px;font-family:var(--font-mono);border:1px solid var(--border);color:var(--muted);transition:all .2s;cursor:default}
+.s-chip:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ===== EDUCATION ===== */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden;transition:all .3s}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad,linear-gradient(90deg,var(--gold),var(--elec)))}
+.edu-card:hover{border-color:rgba(245,197,66,.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.edu-year{font-family:var(--font-mono);font-size:11px;color:var(--elec);margin-bottom:10px;letter-spacing:1px}
+.edu-deg{font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.4}
+.edu-inst{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
+
+/* ===== ABOUT / OBJECTIVE ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-quote{font-size:22px;line-height:1.7;font-weight:400;color:rgba(240,242,248,.85);position:relative;padding-left:28px}
+.about-quote::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--elec))}
+.about-list{display:flex;flex-direction:column;gap:16px}
+.about-item{display:flex;gap:16px;align-items:start}
+.about-icon{width:40px;height:40px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.about-item h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px}
+.about-item p{font-size:13px;color:var(--muted);line-height:1.6;font-family:var(--font-mono)}
+
+/* ===== CONTACT ===== */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact-big{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:20px}
+.contact-big span{color:var(--gold)}
+.contact-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:36px;max-width:380px;font-family:var(--font-mono);font-weight:300}
+.contact-cards{display:flex;flex-direction:column;gap:12px}
+.c-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;align-items:center;gap:16px;text-decoration:none;transition:all .2s}
+.c-card:hover{border-color:var(--gold);transform:translateX(6px)}
+.c-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-info h4{font-size:13px;font-weight:600;color:var(--white)}
+.c-info p{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-top:2px}
+.c-arrow{margin-left:auto;color:var(--dim);font-size:18px;transition:transform .2s}
+.c-card:hover .c-arrow{transform:translateX(4px);color:var(--gold)}
+.target-roles{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px}
+.target-roles h3{font-family:var(--font-mono);font-size:11px;color:var(--elec);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.role-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.role-item:last-child{border-bottom:none}
+.role-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.role-name{font-size:13px;font-weight:500;color:var(--white)}
+.role-tag{font-family:var(--font-mono);font-size:10px;padding:3px 8px;border-radius:3px;margin-left:auto}
+.tag-open{background:rgba(57,255,20,.08);border:1px solid rgba(57,255,20,.2);color:var(--volt)}
+.tag-ideal{background:rgba(245,197,66,.08);border:1px solid rgba(245,197,66,.2);color:var(--gold)}
+
+/* ===== FOOTER ===== */
+footer{padding:32px 0;border-top:1px solid var(--border)}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-copy{font-family:var(--font-mono);font-size:11px;color:var(--dim)}
+.foot-name{color:var(--gold)}
+
+/* ===== REVEAL ANIMATION ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.shown{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:860px){
+  .wrap{padding:0 20px}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-card{display:none}
+  .exp-layout{grid-template-columns:1fr}
+  .exp-timeline{display:none}
+  .skills-outer,.about-grid,.contact-wrap{grid-template-columns:1fr}
+  .nav-links{display:none}
+  #cursor,#cursor-ring{display:none}
+  body{cursor:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Particle Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">SG<span>.dev</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:sg5457174@gmail.com" class="nav-cta">Hire Me →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag reveal">Available for opportunities</div>
+        <h1 class="hero-h1 reveal">
+          <span class="line1">Soumen</span>
+          <span class="line2">Ghosh</span>
+          <span class="line3">⚡ Junior Electrical Engineer</span>
+        </h1>
+        <p class="hero-desc reveal">
+          Testing Specialist at <strong>Titagarh Rail System Ltd.</strong><br/>
+          Expert in <strong>HiPot · SCADA · PLC · AutoCAD</strong><br/>
+          Kolkata, West Bengal &nbsp;·&nbsp; 2+ Years Experience
+        </p>
+        <div class="hero-btns reveal">
+          <a href="#contact" class="btn-glow">⚡ Get In Touch</a>
+          <a href="#experience" class="btn-ghost">View Work →</a>
+        </div>
+        <div class="hero-socials reveal">
+          <span>Find me on</span>
+          <a href="https://linkedin.com/in/soumen-ghosh007" target="_blank" class="social-link" title="LinkedIn">in</a>
+          <a href="mailto:sg5457174@gmail.com" class="social-link" title="Email">@</a>
+          <a href="tel:+918777087960" class="social-link" title="Phone">☏</a>
+        </div>
+      </div>
+      <div class="hero-card reveal">
+        <div class="card-top">
+          <div class="card-avatar">
+            <div class="avatar-glow"></div>
+            SG
+          </div>
+          <div class="card-meta">
+            <h3>Soumen Ghosh</h3>
+            <p>Jr. Electrical Engineer</p>
+          </div>
+        </div>
+        <div class="open-pill"><div class="open-dot"></div>Open to Work — Full Time</div>
+        <div class="card-stats">
+          <div class="c-stat"><div class="c-stat-n">2+</div><div class="c-stat-l">Years Exp</div></div>
+          <div class="c-stat"><div class="c-stat-n">2</div><div class="c-stat-l">Companies</div></div>
+          <div class="c-stat"><div class="c-stat-n">5</div><div class="c-stat-l">Degrees</div></div>
+          <div class="c-stat"><div class="c-stat-n">6+</div><div class="c-stat-l">Skills</div></div>
+        </div>
+        <div class="card-info">
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <span class="info-label">Location</span>
+            <span class="info-val">Kolkata, WB</span>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🏭</div>
+            <span class="info-label">Current</span>
+            <span class="info-val">Titagarh Rail</span>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📧</div>
+            <span class="info-label">Email</span>
+            <span class="info-val"><a href="mailto:sg5457174@gmail.com">sg5457174@gmail.com</a></span>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🔗</div>
+            <span class="info-label">LinkedIn</span>
+            <span class="info-val"><a href="https://linkedin.com/in/soumen-ghosh007" target="_blank">soumen-ghosh007</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="s-tag reveal">Who I am</div>
+    <h2 class="s-title reveal">The <span>Engineer</span><br/>Behind the Current</h2>
+    <div class="about-grid">
+      <p class="about-quote reveal">
+        A committed Electrical Engineer with a foundation built on rigorous testing, meticulous documentation, and a genuine passion for how electricity powers the modern world — from rail systems to industrial automation.
+      </p>
+      <div class="about-list">
+        <div class="about-item reveal">
+          <div class="about-icon">⚡</div>
+          <div>
+            <h4>Testing Specialist</h4>
+            <p>HiPot, insulation resistance &amp; continuity testing at rail system scale</p>
+          </div>
+        </div>
+        <div class="about-item reveal">
+          <div class="about-icon">🤖</div>
+          <div>
+            <h4>Automation Aware</h4>
+            <p>Working knowledge of SCADA, PLC &amp; HMI industrial platforms</p>
+          </div>
+        </div>
+        <div class="about-item reveal">
+          <div class="about-icon">📐</div>
+          <div>
+            <h4>Design Capable</h4>
+            <p>AutoCAD for electrical schematics, layouts &amp; single-line diagrams</p>
+          </div>
+        </div>
+        <div class="about-item reveal">
+          <div class="about-icon">📊</div>
+          <div>
+            <h4>Process Driven</h4>
+            <p>Detailed compliance documentation &amp; quality assurance mindset</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="s-tag reveal">Work History</div>
+    <h2 class="s-title reveal">Where I've <span>Powered</span><br/>Real Projects</h2>
+    <div class="exp-layout">
+      <div class="exp-timeline">
+        <button class="exp-company-btn active" data-panel="p1">
+          <div class="btn-dot"></div>
+          <div class="btn-name">Titagarh Rail<br/>System Ltd.</div>
+        </button>
+        <button class="exp-company-btn" data-panel="p2">
+          <div class="btn-dot"></div>
+          <div class="btn-name">Jai Balaji Group<br/>Chandi Steel Ind.</div>
+        </button>
+      </div>
+      <div class="exp-panels">
+        <div class="exp-panel active" id="p1">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">Testing <span>Associate</span></div>
+              <div class="exp-loc">📍 Titagarh Rail System Ltd. — Kolkata</div>
+            </div>
+            <div class="exp-date-badge">⚡ Jan 2025 — Present</div>
+          </div>
+          <div class="exp-bullets">
+            <div class="bullet">Conduct insulation resistance, continuity, and high voltage (HiPot) tests ensuring every rail system component meets safety specifications before deployment.</div>
+            <div class="bullet">Test and validate transformers, circuit breakers, relays, motors, and wiring systems against IEC and industry standards.</div>
+            <div class="bullet">Identify, document, and report defects with precision — maintaining comprehensive test records for regulatory compliance.</div>
+            <div class="bullet">Drive continuous improvement initiatives within the testing department, optimizing testing workflows and reducing turnaround time.</div>
+          </div>
+          <div class="exp-chips">
+            <span class="chip chip-gold">HiPot Testing</span>
+            <span class="chip chip-gold">Insulation Resistance</span>
+            <span class="chip chip-gold">Continuity Testing</span>
+            <span class="chip chip-gold">Transformer Testing</span>
+            <span class="chip chip-elec">Relay Testing</span>
+            <span class="chip chip-elec">Motor Testing</span>
+            <span class="chip chip-elec">QA Documentation</span>
+          </div>
+        </div>
+        <div class="exp-panel" id="p2">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">Electrical <span>Apprentice</span></div>
+              <div class="exp-loc">📍 Jai Balaji Group — Chandi Steel Industries Ltd., Kolkata</div>
+            </div>
+            <div class="exp-date-badge">Jul 2023 — Sep 2024</div>
+          </div>
+          <div class="exp-bullets">
+            <div class="bullet">Assisted senior electricians in installing, repairing, and maintaining electrical systems across commercial and industrial facilities.</div>
+            <div class="bullet">Measured, cut, bent, and installed conduit for electrical wiring using hand and power tools — building strong practical foundations.</div>
+            <div class="bullet">Diagnosed and resolved electrical faults ensuring safe, efficient system operation at all times.</div>
+            <div class="bullet">Adhered strictly to safety protocols and industry regulations on every project, earning a reputation for reliability and compliance.</div>
+          </div>
+          <div class="exp-chips">
+            <span class="chip chip-gold">Electrical Installation</span>
+            <span class="chip chip-gold">Fault Finding</span>
+            <span class="chip chip-elec">Conduit Work</span>
+            <span class="chip chip-elec">Safety Compliance</span>
+            <span class="chip chip-elec">Maintenance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="s-tag reveal">Capabilities</div>
+    <h2 class="s-title reveal">Skills That <span>Spark</span><br/>Results</h2>
+    <div class="skills-outer reveal">
+      <div>
+        <div class="skill-group">
+          <h3>Electrical Expertise</h3>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">HiPot & HV Testing</span><span class="skill-bar-pct">90%</span></div>
+            <div class="skill-track"><div class="skill-fill gold" data-w="90"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">Insulation Resistance</span><span class="skill-bar-pct">88%</span></div>
+            <div class="skill-track"><div class="skill-fill gold" data-w="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">Electrical Maintenance</span><span class="skill-bar-pct">82%</span></div>
+            <div class="skill-track"><div class="skill-fill gold" data-w="82"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">Power Systems</span><span class="skill-bar-pct">78%</span></div>
+            <div class="skill-track"><div class="skill-fill gold" data-w="78"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">Transformer Testing</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-track"><div class="skill-fill gold" data-w="85"></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group">
+          <h3>Automation & Software</h3>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">AutoCAD</span><span class="skill-bar-pct">72%</span></div>
+            <div class="skill-track"><div class="skill-fill elec" data-w="72"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">SCADA</span><span class="skill-bar-pct">65%</span></div>
+            <div class="skill-track"><div class="skill-fill elec" data-w="65"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">PLC</span><span class="skill-bar-pct">60%</span></div>
+            <div class="skill-track"><div class="skill-fill elec" data-w="60"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">HMI</span><span class="skill-bar-pct">62%</span></div>
+            <div class="skill-track"><div class="skill-fill elec" data-w="62"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-head"><span class="skill-bar-name">MS Office / Tally</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-track"><div class="skill-fill volt" data-w="80"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:36px" class="reveal">
+      <h3 style="font-family:var(--font-mono);font-size:11px;color:var(--elec);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)">All Technical Skills</h3>
+      <div class="skill-tag-cloud">
+        <span class="s-chip">⚡ Electrical Testing</span>
+        <span class="s-chip">🔌 Circuit Breakers</span>
+        <span class="s-chip">🔧 Relay Testing</span>
+        <span class="s-chip">⚙️ Motor Testing</span>
+        <span class="s-chip">📐 AutoCAD</span>
+        <span class="s-chip">🖥 SCADA</span>
+        <span class="s-chip">🤖 PLC</span>
+        <span class="s-chip">🖱 HMI</span>
+        <span class="s-chip">📊 MS Excel</span>
+        <span class="s-chip">📝 Tally ERP</span>
+        <span class="s-chip">🛡 Safety Compliance</span>
+        <span class="s-chip">📋 QA Documentation</span>
+        <span class="s-chip">🔬 Functional Testing</span>
+        <span class="s-chip">🧰 Manual Testing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="s-tag reveal">Academic Path</div>
+    <h2 class="s-title reveal">Education &amp; <span>Qualifications</span></h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal" style="--grad:linear-gradient(90deg,var(--gold),var(--elec))">
+        <div class="edu-year">2023 — 2025</div>
+        <div class="edu-deg">Diploma in Electrical Engineering</div>
+        <div class="edu-inst">Swami Vivekananda University, Kolkata</div>
+      </div>
+      <div class="edu-card reveal" style="--grad:linear-gradient(90deg,var(--elec),var(--volt))">
+        <div class="edu-year">2021 — 2023</div>
+        <div class="edu-deg">ITI — Electrical (NCVT)</div>
+        <div class="edu-inst">Institute of Instrumentation &amp; Metrology, Kolkata</div>
+      </div>
+      <div class="edu-card reveal" style="--grad:linear-gradient(90deg,#a78bfa,var(--elec))">
+        <div class="edu-year">2017 — 2020</div>
+        <div class="edu-deg">B.Com (Honours)</div>
+        <div class="edu-inst">University of Calcutta</div>
+      </div>
+      <div class="edu-card reveal" style="--grad:linear-gradient(90deg,var(--rose),var(--gold))">
+        <div class="edu-year">2015 — 2017</div>
+        <div class="edu-deg">Higher Secondary (WBCHSE)</div>
+        <div class="edu-inst">Uttarpara Amarendra Vidya Pith</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <div>
+        <div class="s-tag reveal">Let's Talk</div>
+        <h2 class="contact-big reveal">Ready to<br/><span>Connect?</span></h2>
+        <p class="contact-sub reveal">I'm actively seeking full-time roles in electrical testing, maintenance, or automation across India. If you're hiring — let's talk.</p>
+        <div class="contact-cards">
+          <a href="mailto:sg5457174@gmail.com" class="c-card reveal">
+            <div class="c-icon" style="background:rgba(234,67,53,.1);font-size:20px">✉️</div>
+            <div class="c-info"><h4>Email</h4><p>sg5457174@gmail.com</p></div>
+            <div class="c-arrow">→</div>
+          </a>
+          <a href="https://linkedin.com/in/soumen-ghosh007" target="_blank" class="c-card reveal">
+            <div class="c-icon" style="background:rgba(10,102,194,.1);font-size:20px">💼</div>
+            <div class="c-info"><h4>LinkedIn</h4><p>linkedin.com/in/soumen-ghosh007</p></div>
+            <div class="c-arrow">→</div>
+          </a>
+          <a href="tel:+918777087960" class="c-card reveal">
+            <div class="c-icon" style="background:rgba(37,211,102,.1);font-size:20px">📞</div>
+            <div class="c-info"><h4>Phone / WhatsApp</h4><p>+91 8777087960</p></div>
+            <div class="c-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      <div class="target-roles reveal">
+        <h3>Target Roles</h3>
+        <div class="role-item">
+          <div class="role-dot"></div>
+          <div class="role-name">Electrical Testing Engineer</div>
+          <span class="role-tag tag-open">⚡ Ideal</span>
+        </div>
+        <div class="role-item">
+          <div class="role-dot" style="background:var(--elec)"></div>
+          <div class="role-name">Maintenance Engineer</div>
+          <span class="role-tag tag-ideal">Open</span>
+        </div>
+        <div class="role-item">
+          <div class="role-dot" style="background:var(--elec)"></div>
+          <div class="role-name">Field Service Engineer</div>
+          <span class="role-tag tag-ideal">Open</span>
+        </div>
+        <div class="role-item">
+          <div class="role-dot" style="background:#a78bfa"></div>
+          <div class="role-name">SCADA / Automation Engineer</div>
+          <span class="role-tag tag-ideal">Open</span>
+        </div>
+        <div class="role-item">
+          <div class="role-dot" style="background:var(--rose)"></div>
+          <div class="role-name">Electrical Site Engineer</div>
+          <span class="role-tag tag-ideal">Open</span>
+        </div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
+          <p style="font-family:var(--font-mono);font-size:11px;color:var(--muted);line-height:1.7">
+            Industries: Railways · Power · Steel · Manufacturing · Automation<br/>
+            Location: Kolkata (preferred) · Pan India (open)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-copy">⚡ <span class="foot-name">Soumen Ghosh</span> · Junior Electrical Engineer · Kolkata, WB</div>
+      <div class="foot-copy">🇮🇳 Bengali · English · Hindi &nbsp;|&nbsp; Open to Work</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== CURSOR ===== */
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},60)});
+
+/* ===== NAV SCROLL ===== */
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+/* ===== EXPERIENCE TABS ===== */
+document.querySelectorAll('.exp-company-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.exp-company-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.exp-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.panel).classList.add('active');
+  });
+});
+
+/* ===== REVEAL ON SCROLL ===== */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('shown');obs.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ===== SKILL BARS ===== */
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill').forEach(f=>{
+        setTimeout(()=>{f.style.width=f.dataset.w+'%'},200);
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.skills-outer').forEach(el=>barObs.observe(el));
+
+/* ===== PARTICLE CANVAS ===== */
+const canvas=document.getElementById('bg-canvas');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+
+class Particle{
+  constructor(){this.reset()}
+  reset(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;
+    this.r=Math.random()*1.5+.5;this.alpha=Math.random()*.6+.1;
+    this.color=Math.random()>.5?'245,197,66':'0,212,255';
+  }
+  update(){
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${this.color},${this.alpha})`;ctx.fill();
+  }
+}
+
+for(let i=0;i<80;i++)particles.push(new Particle());
+
+function drawConnections(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){
+        const alpha=(1-dist/120)*.15;
+        ctx.strokeStyle=`rgba(0,212,255,${alpha})`;
+        ctx.lineWidth=.5;ctx.beginPath();
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{p.update();p.draw()});
+  drawConnections();
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
